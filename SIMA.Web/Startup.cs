@@ -47,11 +47,9 @@ namespace SIMA.Web
             services.AddRepositories();
             services.AddSharedInfrastructure(_configuration);
             services.AddMultiLingualSupport();
-            services.AddControllersWithViews().AddFluentValidation(fv =>
-            {
-                fv.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-                fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
-            });
+            services.AddControllersWithViews();
+            services.AddFluentValidationAutoValidation();
+            services.AddFluentValidationClientsideAdapters();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddDistributedMemoryCache();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
